@@ -1,4 +1,4 @@
-# camera-ready if everything works (need to modify paths)
+# camera-ready if everything works
 
 from datasets import DatasetThnSeq # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from deeplabv3 import DeepLabV3
@@ -21,8 +21,8 @@ import cv2
 
 batch_size = 8
 
-network = DeepLabV3("eval_seq_thn", project_dir="/staging/frexgus/multitask").cuda()
-network.load_state_dict(torch.load("/staging/frexgus/multitask/training_logs/model_13_2_2_2/checkpoints/model_13_2_2_2_epoch_947.pth"))
+network = DeepLabV3("eval_seq_thn", project_dir="/root/deeplabv3").cuda()
+network.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/model_13_2_2_2_epoch_580.pth"))
 
 val_dataset = DatasetThnSeq(thn_data_path="/root/deeplabv3/data/thn")
 
@@ -68,21 +68,21 @@ for step, (imgs, img_ids) in enumerate(val_loader):
             img_w = overlayed_img.shape[1]
 
             # TODO! do this using network.model_dir instead
-            cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + ".png", img)
-            cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + "_pred.png", pred_label_img_color)
-            cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + "_overlayed.png", overlayed_img)
+            cv2.imwrite(network.model_dir + "/" + img_id + ".png", img)
+            cv2.imwrite(network.model_dir + "/" + img_id + "_pred.png", pred_label_img_color)
+            cv2.imwrite(network.model_dir + "/" + img_id + "_overlayed.png", overlayed_img)
 
             unsorted_img_ids.append(img_id)
 
 ################################################################################
 # create visualization video:
 ################################################################################
-out = cv2.VideoWriter("/staging/frexgus/multitask/training_logs/model_eval2/thn_combined.avi", cv2.VideoWriter_fourcc(*"MJPG"), 12, (2*img_w, 2*img_h))
+out = cv2.VideoWriter("%s/thn_combined.avi" % network.model_dir, cv2.VideoWriter_fourcc(*"MJPG"), 12, (2*img_w, 2*img_h))
 sorted_img_ids = sorted(unsorted_img_ids)
 for img_id in sorted_img_ids:
-    img = cv2.imread("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + ".png", -1)
-    pred_img = cv2.imread("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + "_pred.png", -1)
-    overlayed_img = cv2.imread("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + "_overlayed.png", -1)
+    img = cv2.imread(network.model_dir + "/" + img_id + ".png", -1)
+    pred_img = cv2.imread(network.model_dir + "/" + img_id + "_pred.png", -1)
+    overlayed_img = cv2.imread(network.model_dir + "/" + img_id + "_overlayed.png", -1)
 
     combined_img = np.zeros((2*img_h, 2*img_w, 3), dtype=np.uint8)
 
