@@ -1,3 +1,5 @@
+# camera-ready if everything works (need to modify paths)
+
 from datasets import DatasetSeq # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from deeplabv3 import DeepLabV3
 
@@ -21,7 +23,7 @@ import os
 
 batch_size = 8
 
-network = DeepLabV3("eval2", project_dir="/staging/frexgus/multitask").cuda()
+network = DeepLabV3("eval_seq", project_dir="/staging/frexgus/multitask").cuda()
 network.load_state_dict(torch.load("/staging/frexgus/multitask/training_logs/model_13_2_2_2/checkpoints/model_13_2_2_2_epoch_580.pth"))
 
 for sequence in ["00", "01", "02"]:
@@ -46,9 +48,9 @@ for sequence in ["00", "01", "02"]:
 
             outputs = network(imgs) # (shape: (batch_size, num_classes, img_h, img_w))
 
-            ########################################################################
+            ####################################################################
             # save data for visualization:
-            ########################################################################
+            ####################################################################
             outputs = outputs.data.cpu().numpy() # (shape: (batch_size, num_classes, img_h, img_w))
             pred_label_imgs = np.argmax(outputs, axis=1) # (shape: (batch_size, img_h, img_w))
             pred_label_imgs = pred_label_imgs.astype(np.uint8)
@@ -58,7 +60,6 @@ for sequence in ["00", "01", "02"]:
                 img_id = img_ids[i]
                 img = imgs[i] # (shape: (3, img_h, img_w))
 
-                #if os.path.exists("/staging/frexgus/multitask/training_logs/model_eval/" + img_id + ".png"):
                 img = img.data.cpu().numpy()
                 img = np.transpose(img, (1, 2, 0)) # (shape: (img_h, img_w, 3))
                 img = img*np.array([0.229, 0.224, 0.225])
@@ -73,14 +74,17 @@ for sequence in ["00", "01", "02"]:
                 img_h = overlayed_img.shape[0]
                 img_w = overlayed_img.shape[1]
 
+                # TODO! do this using network.model_dir instead
                 cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + ".png", img)
                 cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + "_pred.png", pred_label_img_color)
                 cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + "_overlayed.png", overlayed_img)
 
                 unsorted_img_ids.append(img_id)
 
+    ############################################################################
+    # create visualization video:
+    ############################################################################
     out = cv2.VideoWriter("/staging/frexgus/multitask/training_logs/model_eval2/stuttgart_%s_combined.avi" % sequence, cv2.VideoWriter_fourcc(*"MJPG"), 20, (2*img_w, 2*img_h))
-
     sorted_img_ids = sorted(unsorted_img_ids)
     for img_id in sorted_img_ids:
         img = cv2.imread("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + ".png", -1)
