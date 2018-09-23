@@ -1,4 +1,6 @@
-from datasets import DatasetEvalVal # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
+# camera-ready if everything works (need to modify paths)
+
+from datasets import DatasetVal # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from deeplabv3 import DeepLabV3
 
 from utils import label_img_to_color
@@ -19,11 +21,10 @@ import cv2
 
 batch_size = 8
 
-network = DeepLabV3("eval", project_dir="/staging/frexgus/multitask").cuda()
+network = DeepLabV3("eval_val", project_dir="/staging/frexgus/multitask").cuda()
 network.load_state_dict(torch.load("/staging/frexgus/multitask/training_logs/model_13_2_2/checkpoints/model_13_2_2_epoch_573.pth"))
 
-
-val_dataset = DatasetEvalVal(cityscapes_data_path="/datasets/cityscapes",
+val_dataset = DatasetVal(cityscapes_data_path="/datasets/cityscapes",
                              cityscapes_meta_path="/staging/frexgus/cityscapes/meta")
 
 num_val_batches = int(len(val_dataset)/batch_size)
@@ -32,7 +33,6 @@ print ("num_val_batches:", num_val_batches)
 val_loader = torch.utils.data.DataLoader(dataset=val_dataset,
                                          batch_size=batch_size, shuffle=False,
                                          num_workers=4)
-
 
 with open("/staging/frexgus/cityscapes/meta/class_weights.pkl", "rb") as file: # (needed for python3)
     class_weights = np.array(pickle.load(file))
@@ -51,11 +51,8 @@ for step, (imgs, label_imgs, img_ids) in enumerate(val_loader):
 
         outputs = network(imgs) # (shape: (batch_size, num_classes, img_h, img_w))
 
-        ########################################################################
         # compute the loss:
-        ########################################################################
         loss = loss_fn(outputs, label_imgs)
-
         loss_value = loss.data.cpu().numpy()[0]
         batch_losses.append(loss_value)
 
@@ -85,5 +82,5 @@ for step, (imgs, label_imgs, img_ids) in enumerate(val_loader):
 
                 cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval/" + img_id + "_overlayed.png", overlayed_img)
 
-epoch_loss = np.mean(batch_losses)
-print ("val loss: %g" % epoch_loss)
+val_loss = np.mean(batch_losses)
+print ("val loss: %g" % val_loss)
