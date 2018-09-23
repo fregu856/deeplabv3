@@ -1,4 +1,4 @@
-# camera-ready if everything works (need to modify paths)
+# camera-ready if everything works
 
 from datasets import DatasetVal # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from deeplabv3 import DeepLabV3
@@ -21,11 +21,11 @@ import cv2
 
 batch_size = 8
 
-network = DeepLabV3("eval_val", project_dir="/staging/frexgus/multitask").cuda()
-network.load_state_dict(torch.load("/staging/frexgus/multitask/training_logs/model_13_2_2/checkpoints/model_13_2_2_epoch_573.pth"))
+network = DeepLabV3("eval_val", project_dir="/root/deeplabv3").cuda()
+network.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/model_13_2_2_2_epoch_580.pth"))
 
-val_dataset = DatasetVal(cityscapes_data_path="/datasets/cityscapes",
-                             cityscapes_meta_path="/staging/frexgus/cityscapes/meta")
+val_dataset = DatasetVal(cityscapes_data_path="/root/deeplabv3/data/cityscapes",
+                             cityscapes_meta_path="/root/deeplabv3/data/cityscapes/meta")
 
 num_val_batches = int(len(val_dataset)/batch_size)
 print ("num_val_batches:", num_val_batches)
@@ -34,7 +34,7 @@ val_loader = torch.utils.data.DataLoader(dataset=val_dataset,
                                          batch_size=batch_size, shuffle=False,
                                          num_workers=4)
 
-with open("/staging/frexgus/cityscapes/meta/class_weights.pkl", "rb") as file: # (needed for python3)
+with open("/root/deeplabv3/data/cityscapes/meta/class_weights.pkl", "rb") as file: # (needed for python3)
     class_weights = np.array(pickle.load(file))
 class_weights = torch.from_numpy(class_weights)
 class_weights = Variable(class_weights.type(torch.FloatTensor)).cuda()
@@ -80,7 +80,7 @@ for step, (imgs, label_imgs, img_ids) in enumerate(val_loader):
                 overlayed_img = 0.35*img + 0.65*pred_label_img_color
                 overlayed_img = overlayed_img.astype(np.uint8)
 
-                cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval/" + img_id + "_overlayed.png", overlayed_img)
+                cv2.imwrite(network.model_dir + "/" + img_id + "_overlayed.png", overlayed_img)
 
 val_loss = np.mean(batch_losses)
 print ("val loss: %g" % val_loss)
