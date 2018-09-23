@@ -31,7 +31,7 @@ class ASPP(nn.Module):
         self.conv_1x1_4 = nn.Conv2d(256, num_classes, kernel_size=1)
 
     def forward(self, feature_map):
-        # (feature_map has shape (batch_size, 512, h/16, w/16)) (NOTE! assuming self.resnet is ResNet18_OS16 or ResNet34_OS16. If self.resnet instead is ResNet18_OS8 or ResNet34_OS8, it will be (batch_size, 512, h/8, w/8))
+        # (feature_map has shape (batch_size, 512, h/16, w/16)) (assuming self.resnet is ResNet18_OS16 or ResNet34_OS16. If self.resnet instead is ResNet18_OS8 or ResNet34_OS8, it will be (batch_size, 512, h/8, w/8))
 
         feature_map_h = feature_map.size()[2] # (== h/16)
         feature_map_w = feature_map.size()[3] # (== w/16)
