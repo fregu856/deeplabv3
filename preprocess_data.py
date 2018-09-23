@@ -1,7 +1,8 @@
+# camera-ready if everything works
+
 import pickle
 import numpy as np
 import cv2
-import math
 import os
 from collections import namedtuple
 
@@ -92,18 +93,16 @@ train_dirs = ["jena/", "zurich/", "weimar/", "ulm/", "tubingen/", "stuttgart/",
               "bremen/", "bochum/", "aachen/"]
 val_dirs = ["frankfurt/", "munster/", "lindau/"]
 test_dirs = ["berlin", "bielefeld", "bonn", "leverkusen", "mainz", "munich"]
-# train_dirs = ["aachen/"]
-# val_dirs = ["lindau/"]
-# test_dirs = ["bonn"]
 
 cityscapes_data_path = "/datasets/cityscapes"
 cityscapes_meta_path = "/staging/frexgus/cityscapes/meta"
-# cityscapes_data_path = "/home/fregu856/exjobb/data/cityscapes"
-# cityscapes_meta_path = "/home/fregu856/exjobb/data/cityscapes/meta"
 
 if not os.path.exists(cityscapes_meta_path + "/label_imgs"):
     os.makedirs(cityscapes_meta_path + "/label_imgs")
 
+################################################################################
+# convert all labels to label imgs with trainId pixel values (and save to disk):
+################################################################################
 train_label_img_paths = []
 
 img_dir = cityscapes_data_path + "/leftImg8bit/train/"
