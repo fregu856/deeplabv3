@@ -1,7 +1,10 @@
+# camera-ready if everything works
+
+# NOTE! OS: output stride, the ratio of input image resolution to final output resolution (OS16: output size is (img_h/16, img_w/16)) (OS8: output size is (img_h/8, img_w/8))
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd import Variable
 import torchvision.models as models
 
 def make_layer(block, in_channels, channels, num_blocks, stride=1, dilation=1):
@@ -106,14 +109,14 @@ class ResNet_Bottleneck_OS16(nn.Module):
             self.resnet = nn.Sequential(*list(resnet.children())[:-3])
 
             print ("pretrained resnet, 101")
-        # elif num_layers == 152:
-        #     resnet = models.resnet152()
-        #     # load pretrained model:
-        #     resnet.load_state_dict(torch.load("/staging/frexgus/frustum_pointnet/resnet34-333f7ec4.pth"))
-        #     # remove fully connected layer, avg pool and layer5:
-        #     self.resnet = nn.Sequential(*list(resnet.children())[:-3])
-        #
-        #     print ("pretrained resnet, 152")
+        elif num_layers == 152:
+            resnet = models.resnet152()
+            # load pretrained model:
+            resnet.load_state_dict(torch.load("/staging/frexgus/frustum_pointnet/resnet152-TODO!TODO!TODO!.pth"))
+            # remove fully connected layer, avg pool and layer5:
+            self.resnet = nn.Sequential(*list(resnet.children())[:-3])
+
+            print ("pretrained resnet, 152")
         else:
             raise Exception("num_layers must be in {50, 101, 152}!")
 
@@ -123,7 +126,7 @@ class ResNet_Bottleneck_OS16(nn.Module):
         # (x has shape (batch_size, 3, h, w))
 
         # pass x through (parts of) the pretrained ResNet:
-        c4 = self.resnet(x) # (shape: (batch_size, 4*256, h/16, w/16))
+        c4 = self.resnet(x) # (shape: (batch_size, 4*256, h/16, w/16)) (it's called c4 since 16 == 2^4)
 
         output = self.layer5(c4) # (shape: (batch_size, 4*512, h/16, w/16))
 
@@ -160,7 +163,7 @@ class ResNet_BasicBlock_OS16(nn.Module):
         # (x has shape (batch_size, 3, h, w))
 
         # pass x through (parts of) the pretrained ResNet:
-        c4 = self.resnet(x) # (shape: (batch_size, 256, h/16, w/16))
+        c4 = self.resnet(x) # (shape: (batch_size, 256, h/16, w/16)) (it's called c4 since 16 == 2^4)
 
         output = self.layer5(c4) # (shape: (batch_size, 512, h/16, w/16))
 
@@ -201,7 +204,7 @@ class ResNet_BasicBlock_OS8(nn.Module):
         # (x has shape (batch_size, 3, h, w))
 
         # pass x through (parts of) the pretrained ResNet:
-        c3 = self.resnet(x) # (shape: (batch_size, 128, h/8, w/8))
+        c3 = self.resnet(x) # (shape: (batch_size, 128, h/8, w/8)) (it's called c3 since 8 == 2^3)
 
         output = self.layer4(c3) # (shape: (batch_size, 256, h/8, w/8))
         output = self.layer5(output) # (shape: (batch_size, 512, h/8, w/8))
@@ -214,12 +217,6 @@ def ResNet18_OS16():
 def ResNet34_OS16():
     return ResNet_BasicBlock_OS16(num_layers=34)
 
-def ResNet18_OS8():
-    return ResNet_BasicBlock_OS8(num_layers=18)
-
-def ResNet34_OS8():
-    return ResNet_BasicBlock_OS8(num_layers=34)
-
 def ResNet50_OS16():
     return ResNet_Bottleneck_OS16(num_layers=50)
 
@@ -227,8 +224,10 @@ def ResNet101_OS16():
     return ResNet_Bottleneck_OS16(num_layers=101)
 
 def ResNet152_OS16():
-    return ResNet_Bottleneck_OS152(num_layers=152)
+    return ResNet_Bottleneck_OS16(num_layers=152)
 
-# x = Variable(torch.randn(1, 3, 512, 512))
-# network = ResNet34_OS16()
-# out = network(x)
+def ResNet18_OS8():
+    return ResNet_BasicBlock_OS8(num_layers=18)
+
+def ResNet34_OS8():
+    return ResNet_BasicBlock_OS8(num_layers=34)
