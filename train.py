@@ -1,4 +1,6 @@
-from datasets import DatasetTrain_small, DatasetTrain_BDD_small, DatasetVal # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
+# camera-ready if everything works (need to modify paths)
+
+from datasets import DatasetTrain, DatasetVal # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from deeplabv3 import DeepLabV3
 
 from utils import add_weight_decay
@@ -20,16 +22,15 @@ import cv2
 import time
 
 # NOTE! NOTE! change this to not overwrite all log data when you train the model:
-model_id = "13_2_2_2"
+model_id = "1"
 
 num_epochs = 1000
 batch_size = 16
 learning_rate = 0.0001
 
 network = DeepLabV3(model_id, project_dir="/staging/frexgus/multitask").cuda()
-#init_weights(network)
 
-train_dataset = DatasetTrain_BDD_small(cityscapes_data_path="/datasets/cityscapes",
+train_dataset = DatasetTrain(cityscapes_data_path="/datasets/cityscapes",
                              cityscapes_meta_path="/staging/frexgus/cityscapes/meta")
 val_dataset = DatasetVal(cityscapes_data_path="/datasets/cityscapes",
                          cityscapes_meta_path="/staging/frexgus/cityscapes/meta")
@@ -65,25 +66,9 @@ for epoch in range(num_epochs):
     print ("###########################")
     print ("epoch: %d/%d" % (epoch+1, num_epochs))
 
-    # if epoch % 100 == 0 and epoch > 0:
-    #     learning_rate = learning_rate/2
-    #
-    #     #######################
-    #     optimizer = torch.optim.Adam(params, lr=learning_rate) # (with weight decay)
-    #
-    #     #optimizer = torch.optim.Adam(network.parameters(), lr=learning_rate)
-    #     ####
-    #     # #optimizer = torch.optim.SGD(params, lr=learning_rate, momentum=0.9)
-    #     #
-    #     # optimizer = torch.optim.SGD(network.parameters(), lr=learning_rate, momentum=0.9)
-    #     #######################
-    #
-    # print ("learning_rate:")
-    # print (learning_rate)
-
-    ################################################################################
+    ############################################################################
     # train:
-    ################################################################################
+    ############################################################################
     network.train() # (set in training mode, this affects BatchNorm and dropout)
     batch_losses = []
     for step, (imgs, label_imgs) in enumerate(train_loader):
@@ -94,17 +79,12 @@ for epoch in range(num_epochs):
 
         outputs = network(imgs) # (shape: (batch_size, num_classes, img_h, img_w))
 
-        ########################################################################
         # compute the loss:
-        ########################################################################
         loss = loss_fn(outputs, label_imgs)
-
-        loss_value = loss.data.cpu().numpy()[0]
+        loss_value = loss.data.cpu().numpy()
         batch_losses.append(loss_value)
 
-        ########################################################################
         # optimization step:
-        ########################################################################
         optimizer.zero_grad() # (reset gradients)
         loss.backward() # (compute gradients)
         optimizer.step() # (perform optimization step)
@@ -127,23 +107,20 @@ for epoch in range(num_epochs):
 
     print ("####")
 
-    ################################################################################
+    ############################################################################
     # val:
-    ################################################################################
+    ############################################################################
     network.eval() # (set in evaluation mode, this affects BatchNorm and dropout)
     batch_losses = []
-    for step, (imgs, label_imgs) in enumerate(val_loader):
+    for step, (imgs, label_imgs, img_ids) in enumerate(val_loader):
         with torch.no_grad(): # (corresponds to setting volatile=True in all variables, this is done during inference to reduce memory consumption)
             imgs = Variable(imgs).cuda() # (shape: (batch_size, 3, img_h, img_w))
             label_imgs = Variable(label_imgs.type(torch.LongTensor)).cuda() # (shape: (batch_size, img_h, img_w))
 
             outputs = network(imgs) # (shape: (batch_size, num_classes, img_h, img_w))
 
-            ########################################################################
             # compute the loss:
-            ########################################################################
             loss = loss_fn(outputs, label_imgs)
-
             loss_value = loss.data.cpu().numpy()[0]
             batch_losses.append(loss_value)
 

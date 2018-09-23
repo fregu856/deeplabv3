@@ -1,4 +1,4 @@
-# camera-ready if everything works
+# camera-ready if everything works (need to modify paths)
 
 import torch
 import torch.utils.data
