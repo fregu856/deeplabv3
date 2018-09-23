@@ -1,4 +1,4 @@
-# camera-ready if everything works (need to modify paths)
+# camera-ready if everything works
 
 # NOTE! OS: output stride, the ratio of input image resolution to final output resolution (OS16: output size is (img_h/16, img_w/16)) (OS8: output size is (img_h/8, img_w/8))
 
@@ -96,7 +96,7 @@ class ResNet_Bottleneck_OS16(nn.Module):
         if num_layers == 50:
             resnet = models.resnet50()
             # load pretrained model:
-            resnet.load_state_dict(torch.load("/staging/frexgus/frustum_pointnet/resnet50-19c8e357.pth"))
+            resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet50-19c8e357.pth"))
             # remove fully connected layer, avg pool and layer5:
             self.resnet = nn.Sequential(*list(resnet.children())[:-3])
 
@@ -104,7 +104,7 @@ class ResNet_Bottleneck_OS16(nn.Module):
         elif num_layers == 101:
             resnet = models.resnet101()
             # load pretrained model:
-            resnet.load_state_dict(torch.load("/staging/frexgus/frustum_pointnet/resnet101-5d3b4d8f.pth"))
+            resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet101-5d3b4d8f.pth"))
             # remove fully connected layer, avg pool and layer5:
             self.resnet = nn.Sequential(*list(resnet.children())[:-3])
 
@@ -112,7 +112,7 @@ class ResNet_Bottleneck_OS16(nn.Module):
         elif num_layers == 152:
             resnet = models.resnet152()
             # load pretrained model:
-            resnet.load_state_dict(torch.load("/staging/frexgus/frustum_pointnet/resnet152-TODO!TODO!TODO!.pth"))
+            resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet152-b121ed2d.pth"))
             # remove fully connected layer, avg pool and layer5:
             self.resnet = nn.Sequential(*list(resnet.children())[:-3])
 
@@ -139,7 +139,7 @@ class ResNet_BasicBlock_OS16(nn.Module):
         if num_layers == 18:
             resnet = models.resnet18()
             # load pretrained model:
-            resnet.load_state_dict(torch.load("/staging/frexgus/frustum_pointnet/resnet18-5c106cde.pth"))
+            resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet18-5c106cde.pth"))
             # remove fully connected layer, avg pool and layer5:
             self.resnet = nn.Sequential(*list(resnet.children())[:-3])
 
@@ -148,7 +148,7 @@ class ResNet_BasicBlock_OS16(nn.Module):
         elif num_layers == 34:
             resnet = models.resnet34()
             # load pretrained model:
-            resnet.load_state_dict(torch.load("/staging/frexgus/frustum_pointnet/resnet34-333f7ec4.pth"))
+            resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet34-333f7ec4.pth"))
             # remove fully connected layer, avg pool and layer5:
             self.resnet = nn.Sequential(*list(resnet.children())[:-3])
 
@@ -176,7 +176,7 @@ class ResNet_BasicBlock_OS8(nn.Module):
         if num_layers == 18:
             resnet = models.resnet18()
             # load pretrained model:
-            resnet.load_state_dict(torch.load("/staging/frexgus/frustum_pointnet/resnet18-5c106cde.pth"))
+            resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet18-5c106cde.pth"))
             # remove fully connected layer, avg pool, layer4 and layer5:
             self.resnet = nn.Sequential(*list(resnet.children())[:-4])
 
@@ -186,7 +186,7 @@ class ResNet_BasicBlock_OS8(nn.Module):
         elif num_layers == 34:
             resnet = models.resnet34()
             # load pretrained model:
-            resnet.load_state_dict(torch.load("/staging/frexgus/frustum_pointnet/resnet34-333f7ec4.pth"))
+            resnet.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/resnet/resnet34-333f7ec4.pth"))
             # remove fully connected layer, avg pool, layer4 and layer5:
             self.resnet = nn.Sequential(*list(resnet.children())[:-4])
 
