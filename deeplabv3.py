@@ -1,11 +1,12 @@
+# camera-ready if everything works
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd import Variable
 
 import os
 
-from resnet import ResNet18_OS16, ResNet18_OS8, ResNet34_OS16, ResNet50_OS16, ResNet101_OS16
+from resnet import ResNet18_OS16, ResNet34_OS16, ResNet50_OS16, ResNet101_OS16, ResNet152_OS16, ResNet18_OS8, ResNet34_OS8
 from aspp import ASPP, ASPP_Bottleneck
 
 class DeepLabV3(nn.Module):
@@ -18,8 +19,8 @@ class DeepLabV3(nn.Module):
         self.project_dir = project_dir
         self.create_model_dirs()
 
-        self.resnet = ResNet18_OS8() # (OS: output_stride)
-        self.aspp = ASPP(num_classes=self.num_classes)
+        self.resnet = ResNet18_OS8() # NOTE! specify the type of ResNet here
+        self.aspp = ASPP(num_classes=self.num_classes) # NOTE! if you use ResNet50-152, set self.aspp = ASPP_Bottleneck(num_classes=self.num_classes) instead
 
     def forward(self, x):
         # (x has shape (batch_size, 3, h, w))
@@ -27,7 +28,7 @@ class DeepLabV3(nn.Module):
         h = x.size()[2]
         w = x.size()[3]
 
-        feature_map = self.resnet(x) # (shape: (batch_size, 512, h/16, w/16)) (NOTE! assuming self.resnet is ResNet18_OS16 or ResNet34_OS16)
+        feature_map = self.resnet(x) # (shape: (batch_size, 512, h/16, w/16)) (assuming self.resnet is ResNet18_OS16 or ResNet34_OS16. If self.resnet is ResNet18_OS8 or ResNet34_OS8, it will be (batch_size, 512, h/8, w/8). If self.resnet is ResNet50-152, it will be (batch_size, 4*512, h/16, w/16))
 
         output = self.aspp(feature_map) # (shape: (batch_size, num_classes, h/16, w/16))
 
@@ -44,8 +45,3 @@ class DeepLabV3(nn.Module):
         if not os.path.exists(self.model_dir):
             os.makedirs(self.model_dir)
             os.makedirs(self.checkpoints_dir)
-
-# x = Variable(torch.randn(8, 3, 1024, 2048)).cuda()
-# network = DeepLabV3("DeepLabV3_test", "/staging/frexgus/multitask")
-# network = network.cuda()
-# out = network(x)
