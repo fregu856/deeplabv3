@@ -1,3 +1,5 @@
+# camera-ready if everything works (need to modify paths)
+
 from datasets import DatasetThnSeq # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from deeplabv3 import DeepLabV3
 
@@ -19,10 +21,10 @@ import cv2
 
 batch_size = 8
 
-network = DeepLabV3("eval2", project_dir="/staging/frexgus/multitask").cuda()
+network = DeepLabV3("eval_seq_thn", project_dir="/staging/frexgus/multitask").cuda()
 network.load_state_dict(torch.load("/staging/frexgus/multitask/training_logs/model_13_2_2_2/checkpoints/model_13_2_2_2_epoch_947.pth"))
 
-val_dataset = DatasetThnSeq()
+val_dataset = DatasetThnSeq(thn_data_path="/root/deeplabv3/data/thn")
 
 num_val_batches = int(len(val_dataset)/batch_size)
 print ("num_val_batches:", num_val_batches)
@@ -65,14 +67,17 @@ for step, (imgs, img_ids) in enumerate(val_loader):
             img_h = overlayed_img.shape[0]
             img_w = overlayed_img.shape[1]
 
+            # TODO! do this using network.model_dir instead
             cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + ".png", img)
             cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + "_pred.png", pred_label_img_color)
             cv2.imwrite("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + "_overlayed.png", overlayed_img)
 
             unsorted_img_ids.append(img_id)
 
+################################################################################
+# create visualization video:
+################################################################################
 out = cv2.VideoWriter("/staging/frexgus/multitask/training_logs/model_eval2/thn_combined.avi", cv2.VideoWriter_fourcc(*"MJPG"), 12, (2*img_w, 2*img_h))
-
 sorted_img_ids = sorted(unsorted_img_ids)
 for img_id in sorted_img_ids:
     img = cv2.imread("/staging/frexgus/multitask/training_logs/model_eval2/" + img_id + ".png", -1)
