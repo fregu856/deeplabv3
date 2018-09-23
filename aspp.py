@@ -1,4 +1,4 @@
-# camera-ready if everythng works (need to modify paths)
+# camera-ready if everythng works
 
 import torch
 import torch.nn as nn

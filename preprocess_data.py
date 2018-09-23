@@ -1,4 +1,4 @@
-# camera-ready if everything works (need to modify paths)
+# camera-ready if everything works
 
 import pickle
 import numpy as np
@@ -94,8 +94,8 @@ train_dirs = ["jena/", "zurich/", "weimar/", "ulm/", "tubingen/", "stuttgart/",
 val_dirs = ["frankfurt/", "munster/", "lindau/"]
 test_dirs = ["berlin", "bielefeld", "bonn", "leverkusen", "mainz", "munich"]
 
-cityscapes_data_path = "/datasets/cityscapes"
-cityscapes_meta_path = "/staging/frexgus/cityscapes/meta"
+cityscapes_data_path = "/root/deeplabv3/data/cityscapes"
+cityscapes_meta_path = "/root/deeplabv3/data/cityscapes/meta"
 
 if not os.path.exists(cityscapes_meta_path + "/label_imgs"):
     os.makedirs(cityscapes_meta_path + "/label_imgs")
