@@ -1,4 +1,4 @@
-# camera-ready if everything works
+# camera-ready
 
 from datasets import DatasetTrain, DatasetVal # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from deeplabv3 import DeepLabV3
@@ -25,7 +25,7 @@ import time
 model_id = "1"
 
 num_epochs = 1000
-batch_size = 16
+batch_size = 2
 learning_rate = 0.0001
 
 network = DeepLabV3(model_id, project_dir="/root/deeplabv3").cuda()
@@ -42,10 +42,10 @@ print ("num_val_batches:", num_val_batches)
 
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                            batch_size=batch_size, shuffle=True,
-                                           num_workers=4)
+                                           num_workers=1)
 val_loader = torch.utils.data.DataLoader(dataset=val_dataset,
                                          batch_size=batch_size, shuffle=False,
-                                         num_workers=4)
+                                         num_workers=1)
 
 params = add_weight_decay(network, l2_value=0.0001)
 optimizer = torch.optim.Adam(params, lr=learning_rate)
@@ -121,7 +121,7 @@ for epoch in range(num_epochs):
 
             # compute the loss:
             loss = loss_fn(outputs, label_imgs)
-            loss_value = loss.data.cpu().numpy()[0]
+            loss_value = loss.data.cpu().numpy()
             batch_losses.append(loss_value)
 
     epoch_loss = np.mean(batch_losses)
