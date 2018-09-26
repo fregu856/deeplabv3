@@ -102,3 +102,11 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ sudo sh start_docker_image.sh
 - $ cd --
 - $ python deeplabv3/preprocess_data.py
+
+### TODO Train:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/train.py
