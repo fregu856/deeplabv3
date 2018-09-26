@@ -77,7 +77,36 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 - - $ git clone https://github.com/fregu856/deeplabv3.git
 
-- - TODO! TODO! (download cityscapes)
+- - Download the Cityscapes dataset:
+- - - Register on the [website](https://www.cityscapes-dataset.com/).
+- - - $ wget --keep-session-cookies --save-cookies=cookies.txt --post-data 'username=XXXXX&password=YYYYY&submit=Login' https://www.cityscapes-dataset.com/login/ *(where you replace XXXXX with your username, and YYYYY with your password)*
+- - - $ wget --load-cookies cookies.txt --content-disposition https://www.cityscapes-dataset.com/file-handling/?packageID=1
+- - - $ wget --load-cookies cookies.txt --content-disposition https://www.cityscapes-dataset.com/file-handling/?packageID=3
+
+- - - $ unzip gtFine_trainvaltest.zip
+- - - $ unzip leftImg8bit_trainvaltest.zip
+
+- - - $ mkdir deeplabv3/data
+- - - $ mkdir deeplabv3/data/cityscapes
+- - - $ mv gtFine deeplabv3/data/cityscapes
+- - - $ mv leftImg8bit deeplabv3/data/cityscapes
 
 ****
 ****
+
+****
+
+### TODO:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/preprocess_data.py
+
+### TODO Train:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/train.py
