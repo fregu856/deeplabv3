@@ -77,6 +77,10 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 - - $ git clone https://github.com/fregu856/deeplabv3.git
 
+- - Download the Cityscapes dataset:
+- - - Register on the [website](https://www.cityscapes-dataset.com/).
+- - - $ wget --keep-session-cookies --save-cookies=cookies.txt --post-data 'username=XXXXX&password=YYYYY&submit=Login' https://www.cityscapes-dataset.com/login/ *(where you replace XXXXX with your username, and YYYYY with your password)*
+
 - - TODO! TODO! (download cityscapes)
 
 ****
