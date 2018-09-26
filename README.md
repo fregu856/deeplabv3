@@ -80,8 +80,16 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - - Download the Cityscapes dataset:
 - - - Register on the [website](https://www.cityscapes-dataset.com/).
 - - - $ wget --keep-session-cookies --save-cookies=cookies.txt --post-data 'username=XXXXX&password=YYYYY&submit=Login' https://www.cityscapes-dataset.com/login/ *(where you replace XXXXX with your username, and YYYYY with your password)*
+- - - $ wget --load-cookies cookies.txt --content-disposition https://www.cityscapes-dataset.com/file-handling/?packageID=1
+- - - $ wget --load-cookies cookies.txt --content-disposition https://www.cityscapes-dataset.com/file-handling/?packageID=3
 
-- - TODO! TODO! (download cityscapes)
+- - - $ unzip gtFine_trainvaltest.zip
+- - - $ unzip leftImg8bit_trainvaltest.zip
+
+- - - $ mkdir deeplabv3/data
+- - - $ mkdir deeplabv3/data/cityscapes
+- - - $ mv gtFine deeplabv3/data/cityscapes
+- - - $ mv leftImg8bit deeplabv3/data/cityscapes
 
 ****
 ****
