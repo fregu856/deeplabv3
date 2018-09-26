@@ -1,4 +1,4 @@
-# camera-ready if everything works
+# camera-ready
 
 import pickle
 import numpy as np
@@ -97,6 +97,8 @@ test_dirs = ["berlin", "bielefeld", "bonn", "leverkusen", "mainz", "munich"]
 cityscapes_data_path = "/root/deeplabv3/data/cityscapes"
 cityscapes_meta_path = "/root/deeplabv3/data/cityscapes/meta"
 
+if not os.path.exists(cityscapes_meta_path):
+    os.makedirs(cityscapes_meta_path)
 if not os.path.exists(cityscapes_meta_path + "/label_imgs"):
     os.makedirs(cityscapes_meta_path + "/label_imgs")
 
