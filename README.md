@@ -99,6 +99,10 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - - - $ unzip thn.zip?dl=0
 - - - $ mv thn deeplabv3/data
 
+- - - $ cd deeplabv3
+- - - $ git clone https://github.com/mcordts/cityscapesScripts.git
+- - - Comment out the line *print type(obj).name* on line 238 in deeplabv3/cityscapesScripts/cityscapesscripts//helpers/annotation.py
+
 ****
 ****
 
@@ -151,3 +155,16 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ python deeplabv3/run_on_thn_seq.py 
 
 - Write what files are created etc. TODO!
+
+### TODO eval_on_val_for_metrics:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ cd deeplabv3/cityscapesScripts
+- $ pip install . *(Only need to do this once!)*
+- $ python cityscapesscripts/evaluation/evalPixelLevelSemanticLabeling.py
+
+- Write what files are created etc. TODO!
+
