@@ -1,4 +1,4 @@
-# TODO
+# camera-ready
 
 from datasets import DatasetVal # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from deeplabv3 import DeepLabV3
@@ -93,7 +93,7 @@ for step, (imgs, label_imgs, img_ids) in enumerate(val_loader):
             pred_label_img = pred_label_imgs[i] # (shape: (1024, 2048))
             img_id = img_ids[i]
 
-            # convert gtFine_img from trainId to id pixel values:
+            # convert pred_label_img from trainId to id pixel values:
             pred_label_img = trainId_to_id_map_func(pred_label_img) # (shape: (1024, 2048))
             pred_label_img = pred_label_img.astype(np.uint8)
 
