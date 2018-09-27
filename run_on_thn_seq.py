@@ -1,4 +1,4 @@
-# camera-ready if everything works
+# camera-ready
 
 from datasets import DatasetThnSeq # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 from deeplabv3 import DeepLabV3
@@ -19,7 +19,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import cv2
 
-batch_size = 8
+batch_size = 2
 
 network = DeepLabV3("eval_seq_thn", project_dir="/root/deeplabv3").cuda()
 network.load_state_dict(torch.load("/root/deeplabv3/pretrained_models/model_13_2_2_2_epoch_580.pth"))
@@ -31,7 +31,7 @@ print ("num_val_batches:", num_val_batches)
 
 val_loader = torch.utils.data.DataLoader(dataset=val_dataset,
                                          batch_size=batch_size, shuffle=False,
-                                         num_workers=2)
+                                         num_workers=1)
 
 network.eval() # (set in evaluation mode, this affects BatchNorm and dropout)
 unsorted_img_ids = []
