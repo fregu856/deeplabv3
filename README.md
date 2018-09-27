@@ -122,7 +122,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/train.py
 
 
@@ -131,7 +131,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/eval_on_val.py 
 
 - Write what the code does, what files are created etc. TODO!
@@ -141,7 +141,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/run_on_seq.py 
 
 - Write what files are created etc. TODO!
@@ -151,7 +151,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/run_on_thn_seq.py 
 
 - Write what files are created etc. TODO!
@@ -161,10 +161,10 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ cd deeplabv3/cityscapesScripts
-- $ pip install . *(Only need to do this once!)*
-- $ python setup.py build_ext --inplace *(Only need to do this once!)* *(this enables cython, which makes the cityscapes evaluation script run A LOT faster)*
+- $ pip install . *(ONLY NEED TO DO THIS ONCE!)*
+- $ python setup.py build_ext --inplace *(ONLY NEED TO DO THIS ONCE!)* *(this enables cython, which makes the cityscapes evaluation script run A LOT faster)*
 - $ export CITYSCAPES_RESULTS="/root/deeplabv3/training_logs/model_eval_val_for_metrics" 
 - $ export CITYSCAPES_DATASET="/root/deeplabv3/data/cityscapes" 
 - $ python cityscapesscripts/evaluation/evalPixelLevelSemanticLabeling.py
