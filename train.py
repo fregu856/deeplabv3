@@ -25,7 +25,7 @@ import time
 model_id = "1"
 
 num_epochs = 1000
-batch_size = 2
+batch_size = 3
 learning_rate = 0.0001
 
 network = DeepLabV3(model_id, project_dir="/root/deeplabv3").cuda()
