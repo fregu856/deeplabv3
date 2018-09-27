@@ -1,8 +1,13 @@
-# camera-ready
+# camera-ready if everything works
+
+import sys
 
 from datasets import DatasetTrain, DatasetVal # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
+
+sys.path.append("/root/deeplabv3/model")
 from deeplabv3 import DeepLabV3
 
+sys.path.append("/root/deeplabv3/utils")
 from utils import add_weight_decay
 
 import torch

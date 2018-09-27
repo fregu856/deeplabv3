@@ -1,4 +1,4 @@
-# camera-ready
+# camera-ready if everything works
 
 import torch
 import torch.utils.data
