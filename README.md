@@ -164,6 +164,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
 - $ cd deeplabv3/cityscapesScripts
 - $ pip install . *(Only need to do this once!)*
+- $ python setup.py build_ext --inplace *(Only need to do this once!)*
 - $ export CITYSCAPES_RESULTS="/root/deeplabv3/training_logs/model_eval_val_for_metrics" 
 - $ export CITYSCAPES_DATASET="/root/deeplabv3/data/cityscapes" 
 - $ python cityscapesscripts/evaluation/evalPixelLevelSemanticLabeling.py
