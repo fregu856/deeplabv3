@@ -101,7 +101,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 - - - $ cd deeplabv3
 - - - $ git clone https://github.com/mcordts/cityscapesScripts.git
-- - - Comment out the line *print type(obj).name* on line 238 in deeplabv3/cityscapesScripts/cityscapesscripts//helpers/annotation.py
+- - - Comment out the line `print type(obj).name` on line 238 in deeplabv3/cityscapesScripts/cityscapesscripts//helpers/annotation.py
 
 ****
 ****
