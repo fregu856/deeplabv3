@@ -107,6 +107,8 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ cd --
 - $ python deeplabv3/preprocess_data.py
 
+- Write what the code does, what files are created etc. TODO!
+
 ### TODO Train:
 
 - SSH into the paperspace server.
@@ -124,6 +126,8 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
 - $ python deeplabv3/eval_on_val.py 
 
+- Write what the code does, what files are created etc. TODO!
+
 ### TODO Seq:
 
 - SSH into the paperspace server.
@@ -132,6 +136,8 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
 - $ python deeplabv3/run_on_seq.py 
 
+- Write what files are created etc. TODO!
+
 ### TODO Thn Seq:
 
 - SSH into the paperspace server.
@@ -139,3 +145,5 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ cd --
 - $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
 - $ python deeplabv3/run_on_thn_seq.py 
+
+- Write what files are created etc. TODO!
