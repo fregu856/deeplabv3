@@ -113,7 +113,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py
+- $ python deeplabv3/utils/preprocess_data.py
 
 - Write what the code does, what files are created etc. TODO!
 
@@ -122,7 +122,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/train.py
 
 
@@ -131,8 +131,8 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
-- $ python deeplabv3/eval_on_val.py 
+- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/evaluation/eval_on_val.py 
 
 - Write what the code does, what files are created etc. TODO!
 
@@ -141,8 +141,8 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
-- $ python deeplabv3/run_on_seq.py 
+- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/visualization/run_on_seq.py 
 
 - Write what files are created etc. TODO!
 
@@ -151,8 +151,8 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
-- $ python deeplabv3/run_on_thn_seq.py 
+- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/visualization/run_on_thn_seq.py 
 
 - Write what files are created etc. TODO!
 
@@ -161,7 +161,10 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/evaluation/eval_on_val_for_metrics.py 
+
+
 - $ cd deeplabv3/cityscapesScripts
 - $ pip install . *(ONLY NEED TO DO THIS ONCE!)*
 - $ python setup.py build_ext --inplace *(ONLY NEED TO DO THIS ONCE!)* *(this enables cython, which makes the cityscapes evaluation script run A LOT faster)*
