@@ -99,6 +99,10 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - - - $ unzip thn.zip?dl=0
 - - - $ mv thn deeplabv3/data
 
+- - - $ cd deeplabv3
+- - - $ git clone https://github.com/mcordts/cityscapesScripts.git
+- - - Comment out the line `print type(obj).name` on line 238 in deeplabv3/cityscapesScripts/cityscapesscripts//helpers/annotation.py *(this is need for the cityscapes scripts to be runnable with Python3)*
+
 ****
 ****
 
@@ -118,7 +122,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/train.py
 
 
@@ -127,7 +131,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/eval_on_val.py 
 
 - Write what the code does, what files are created etc. TODO!
@@ -137,7 +141,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/run_on_seq.py 
 
 - Write what files are created etc. TODO!
@@ -147,7 +151,64 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
 - $ cd --
-- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/run_on_thn_seq.py 
 
 - Write what files are created etc. TODO!
+
+### TODO eval_on_val_for_metrics:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ cd deeplabv3/cityscapesScripts
+- $ pip install . *(ONLY NEED TO DO THIS ONCE!)*
+- $ python setup.py build_ext --inplace *(ONLY NEED TO DO THIS ONCE!)* *(this enables cython, which makes the cityscapes evaluation script run A LOT faster)*
+- $ export CITYSCAPES_RESULTS="/root/deeplabv3/training_logs/model_eval_val_for_metrics" 
+- $ export CITYSCAPES_DATASET="/root/deeplabv3/data/cityscapes" 
+- $ python cityscapesscripts/evaluation/evalPixelLevelSemanticLabeling.py
+- - This will print performance metrics of the following form:
+```
+classes          IoU      nIoU
+--------------------------------
+road          : 0.918      nan
+sidewalk      : 0.715      nan
+building      : 0.837      nan
+wall          : 0.413      nan
+fence         : 0.397      nan
+pole          : 0.404      nan
+traffic light : 0.411      nan
+traffic sign  : 0.577      nan
+vegetation    : 0.857      nan
+terrain       : 0.489      nan
+sky           : 0.850      nan
+person        : 0.637    0.491
+rider         : 0.456    0.262
+car           : 0.897    0.759
+truck         : 0.582    0.277
+bus           : 0.616    0.411
+train         : 0.310    0.133
+motorcycle    : 0.322    0.170
+bicycle       : 0.583    0.413
+--------------------------------
+Score Average : 0.593    0.364
+--------------------------------
+
+
+categories       IoU      nIoU
+--------------------------------
+flat          : 0.932      nan
+construction  : 0.846      nan
+object        : 0.478      nan
+nature        : 0.869      nan
+sky           : 0.850      nan
+human         : 0.658    0.521
+vehicle       : 0.871    0.744
+--------------------------------
+Score Average : 0.786    0.632
+--------------------------------
+```
+
+- Write what files are created etc. TODO!
+
