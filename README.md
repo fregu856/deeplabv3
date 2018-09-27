@@ -168,7 +168,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ export CITYSCAPES_RESULTS="/root/deeplabv3/training_logs/model_eval_val_for_metrics" 
 - $ export CITYSCAPES_DATASET="/root/deeplabv3/data/cityscapes" 
 - $ python cityscapesscripts/evaluation/evalPixelLevelSemanticLabeling.py
-- - This will output performance metric of the following form:
+- - This will print performance metric of the following form:
 ```
 classes          IoU      nIoU
 --------------------------------
