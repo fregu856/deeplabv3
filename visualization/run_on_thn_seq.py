@@ -1,4 +1,4 @@
-# camera-ready if everything works
+# camera-ready
 
 import sys
 
