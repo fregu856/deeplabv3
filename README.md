@@ -91,6 +91,10 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - - - $ mv gtFine deeplabv3/data/cityscapes
 - - - $ mv leftImg8bit deeplabv3/data/cityscapes
 
+- - - $ wget --load-cookies cookies.txt --content-disposition https://www.cityscapes-dataset.com/file-handling/?packageID=12
+- - - $ unzip leftImg8bit_demoVideo.zip
+- - - $ mv leftImg8bit/demoVideo deeplabv3/data/cityscapes/leftImg8bit
+
 ****
 ****
 
@@ -103,6 +107,8 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ cd --
 - $ python deeplabv3/preprocess_data.py
 
+- Write what the code does, what files are created etc. TODO!
+
 ### TODO Train:
 
 - SSH into the paperspace server.
@@ -110,3 +116,34 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ cd --
 - $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
 - $ python deeplabv3/train.py
+
+
+### TODO Eval val:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/eval_on_val.py 
+
+- Write what the code does, what files are created etc. TODO!
+
+### TODO Seq:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/run_on_seq.py 
+
+- Write what files are created etc. TODO!
+
+### TODO Thn Seq:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/preprocess_data.py *(Only need to this once!)*
+- $ python deeplabv3/run_on_thn_seq.py 
+
+- Write what files are created etc. TODO!
