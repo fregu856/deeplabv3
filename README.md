@@ -256,12 +256,20 @@ Score Average : 0.786    0.632
 
 ## Documentation for remaining code
 
-### visualization/run_on_seq.py:
+- model/resnet.py:
+- - TODO!
 
-- TODO!
+- model/aspp.py:
+- - TODO!
 
-****
+- model/deeplabv3.py:
+- - TODO!
 
-### visualization/run_on_thn_seq.py:
+- utils/preprocess_data.py:
+- - TODO!
 
-- TODO!
+- utils/utils.py:
+- - TODO!
+
+- datasets.py:
+- - TODO!
