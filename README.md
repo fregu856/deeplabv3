@@ -267,7 +267,7 @@ Score Average : 0.786    0.632
 - - Converts all Cityscapes label images from having Id to having trainId pixel values, and saves these to deeplabv3/data/cityscapes/meta/label_imgs. Also computes class weigths according to the [ENet paper](https://arxiv.org/abs/1606.02147) and saves these to deeplabv3/data/cityscapes/meta.
 
 - utils/utils.py:
-- - TODO!
+- - Contains helper funtions which are imported and utilized in multiple files. 
 
 - datasets.py:
-- - TODO!
+- - Contains all utilized dataset definitions.
