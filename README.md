@@ -264,7 +264,7 @@ Score Average : 0.786    0.632
 - - Definition of the complete DeepLabV3 model.
 
 - utils/preprocess_data.py:
-- - TODO!
+- - Converts all Cityscapes label images from having Id to having trainId pixel values, and saves these to deeplabv3/data/cityscapes/meta/label_imgs. Also computes class weigths according to the [ENet paper](https://arxiv.org/abs/1606.02147) and saves these to deeplabv3/data/cityscapes/meta.
 
 - utils/utils.py:
 - - TODO!
