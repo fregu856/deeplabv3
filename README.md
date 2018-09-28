@@ -9,6 +9,7 @@ PyTorch implementation of DeepLabV3, trained on the Cityscapes dataset.
 ## Index
 - [Using a VM on Paperspace](#paperspace)
 - [Pretrained model](#pretrained-model)
+- [Training a model on Cityscapes](#train-model-on-cityscapes)
 - TODO!
 
 ****
@@ -130,6 +131,19 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 ****
 
+### Train model on Cityscapes:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/train.py
+
+****
+****
+
+****
+
 ### TODO:
 
 - SSH into the paperspace server.
@@ -139,14 +153,10 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 - Write what the code does, what files are created etc. TODO!
 
-### TODO Train:
+****
+****
 
-- SSH into the paperspace server.
-- $ sudo sh start_docker_image.sh
-- $ cd --
-- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
-- $ python deeplabv3/train.py
-
+****
 
 ### TODO Eval val:
 
@@ -158,6 +168,11 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 - Write what the code does, what files are created etc. TODO!
 
+****
+****
+
+****
+
 ### TODO Seq:
 
 - SSH into the paperspace server.
@@ -168,6 +183,11 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 - Write what files are created etc. TODO!
 
+****
+****
+
+****
+
 ### TODO Thn Seq:
 
 - SSH into the paperspace server.
@@ -177,6 +197,11 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ python deeplabv3/visualization/run_on_thn_seq.py 
 
 - Write what files are created etc. TODO!
+
+****
+****
+
+****
 
 ### TODO eval_on_val_for_metrics:
 
