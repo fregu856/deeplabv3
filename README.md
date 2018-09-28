@@ -112,7 +112,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - - - $ unzip leftImg8bit_demoVideo.zip
 - - - $ mv leftImg8bit/demoVideo deeplabv3/data/cityscapes/leftImg8bit
 
-- - - $ wget https://www.dropbox.com/s/vt1d0pjjphwivvc/thn.zip?dl=0 *(to download the OPTIONAL real-life data)*
+- - - $ wget https://www.dropbox.com/s/vt1d0pjjphwivvc/thn.zip?dl=0 *(to download the OPTIONAL Thn sequence data (standard dash cam))*
 - - - $ unzip thn.zip?dl=0
 - - - $ mv thn deeplabv3/data
 
