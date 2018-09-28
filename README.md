@@ -146,6 +146,8 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 ****
 
+## Evaluation
+
 ### evaluation/eval_on_val.py:
 
 - SSH into the paperspace server.
@@ -253,5 +255,13 @@ Score Average : 0.786    0.632
 ****
 
 ## Documentation for remaining code
+
+### visualization/run_on_seq.py:
+
+- TODO!
+
+****
+
+### visualization/run_on_thn_seq.py:
 
 - TODO!
