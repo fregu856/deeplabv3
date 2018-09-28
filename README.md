@@ -11,7 +11,7 @@ PyTorch implementation of [DeepLabV3](https://arxiv.org/abs/1706.05587), trained
 - [Pretrained model](#pretrained-model)
 - [Training a model on Cityscapes](#train-model-on-cityscapes)
 - [Evaluation](#evaluation)
-- [Visualization](#visualization/run-on-seq-py)
+- [Visualization](#visualization)
 - [Documentation for remaining code](#documentation-for-remaining-code)
 
 ****
@@ -146,33 +146,6 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 ****
 
-### visualization/run_on_seq.py:
-
-- SSH into the paperspace server.
-- $ sudo sh start_docker_image.sh
-- $ cd --
-- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
-- $ python deeplabv3/visualization/run_on_seq.py 
-
-- Write what files are created etc. TODO!
-
-****
-
-### visualization/run_on_thn_seq.py:
-
-- SSH into the paperspace server.
-- $ sudo sh start_docker_image.sh
-- $ cd --
-- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
-- $ python deeplabv3/visualization/run_on_thn_seq.py 
-
-- Write what files are created etc. TODO!
-
-****
-****
-
-****
-
 ### evaluation/eval_on_val.py:
 
 - SSH into the paperspace server.
@@ -241,6 +214,35 @@ vehicle       : 0.871    0.744
 Score Average : 0.786    0.632
 --------------------------------
 ```
+
+- Write what files are created etc. TODO!
+
+****
+****
+
+****
+
+## Visualization
+
+### visualization/run_on_seq.py:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/visualization/run_on_seq.py 
+
+- Write what files are created etc. TODO!
+
+****
+
+### visualization/run_on_thn_seq.py:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/visualization/run_on_thn_seq.py 
 
 - Write what files are created etc. TODO!
 
