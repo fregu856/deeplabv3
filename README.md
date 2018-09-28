@@ -168,14 +168,14 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/evaluation/eval_on_val_for_metrics.py 
 
-
 - $ cd deeplabv3/cityscapesScripts
 - $ pip install . *(ONLY NEED TO DO THIS ONCE!)*
 - $ python setup.py build_ext --inplace *(ONLY NEED TO DO THIS ONCE!)* *(this enables cython, which makes the cityscapes evaluation script run A LOT faster)*
 - $ export CITYSCAPES_RESULTS="/root/deeplabv3/training_logs/model_eval_val_for_metrics" 
 - $ export CITYSCAPES_DATASET="/root/deeplabv3/data/cityscapes" 
 - $ python cityscapesscripts/evaluation/evalPixelLevelSemanticLabeling.py
-- - This will print performance metrics of the following form:
+
+- - This will run the pretrained model (set on line 55 in eval_on_val_for_metrics.py) on all images in Cityscapes val, **upsample** the predicted segmentation images to the original Cityscapes image size (1024, 2048), and compute and print performance metrics:
 ```
 classes          IoU      nIoU
 --------------------------------
@@ -216,8 +216,6 @@ vehicle       : 0.871    0.744
 Score Average : 0.786    0.632
 --------------------------------
 ```
-
-- Write what files are created etc. TODO!
 
 ****
 ****
