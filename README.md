@@ -12,7 +12,7 @@ PyTorch implementation of [DeepLabV3](https://arxiv.org/abs/1706.05587), trained
 - [Training a model on Cityscapes](#train-model-on-cityscapes)
 - [Evaluation](#evaluation)
 - [Visualization](#visualization)
-- [Documentation for remaining code](#documentation-for-remaining-code)
+- [Documentation of remaining code](#documentation-of-remaining-code)
 
 ****
 ****
@@ -252,7 +252,7 @@ Score Average : 0.786    0.632
 
 ****
 
-## Documentation for remaining code
+## Documentation of remaining code
 
 - model/resnet.py:
 - - Definition of the custom Resnet model (output stride = 8 or 16) which is the backbone of DeepLabV3.
