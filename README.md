@@ -255,10 +255,10 @@ Score Average : 0.786    0.632
 ## Documentation for remaining code
 
 - model/resnet.py:
-- - TODO!
+- - Definition of the custom Resnet model (output stride = 8 or 16) which is the backbone of DeepLabV3.
 
 - model/aspp.py:
-- - TODO!
+- - Definition of the 
 
 - model/deeplabv3.py:
 - - TODO!
