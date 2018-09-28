@@ -172,7 +172,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 ****
 
-### TODO Eval val:
+### evaluation/eval_on_val.py:
 
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
@@ -184,7 +184,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 ****
 
-### TODO eval_on_val_for_metrics:
+### evaluation/eval_on_val_for_metrics.py:
 
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
