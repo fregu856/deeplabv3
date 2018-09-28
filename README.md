@@ -6,6 +6,14 @@ PyTorch implementation of DeepLabV3, trained on the Cityscapes dataset.
 
 [![demo video with results](https://img.youtube.com/vi/9e2x4dDRB-k/0.jpg)](https://youtu.be/9e2x4dDRB-k)
 
+## Index
+- [Using a VM on Paperspace](#paperspace)
+- [Pretrained model](#pretrained-model)
+- TODO!
+
+****
+****
+
 ******
 ## Paperspace:
 
@@ -108,6 +116,14 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - - - $ cd deeplabv3
 - - - $ git clone https://github.com/mcordts/cityscapesScripts.git
 - - - Comment out the line `print type(obj).name` on line 238 in deeplabv3/cityscapesScripts/cityscapesscripts//helpers/annotation.py *(this is need for the cityscapes scripts to be runnable with Python3)*
+
+***
+***
+
+***
+## Pretrained model:
+- pretrained_models/model_13_2_2_2_epoch_580.pth:
+- - Trained for 580 epochs on [Cityscapes](https://www.cityscapes-dataset.com/) val and 3333 + 745 images from [Berkeley DeepDrive](http://bdd-data.berkeley.edu/).
 
 ****
 ****
