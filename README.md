@@ -156,7 +156,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/evaluation/eval_on_val.py 
 
-- Write what the code does, what files are created etc. TODO!
+- - This will run the pretrained model (set on line 31 in eval_on_val.py) on all images in Cityscapes val, compute and print the loss, and save the predicted segmentation images in deeplabv3/training_logs/model_eval_val.
 
 ****
 
