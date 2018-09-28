@@ -159,21 +159,6 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 ****
 
-### TODO Eval val:
-
-- SSH into the paperspace server.
-- $ sudo sh start_docker_image.sh
-- $ cd --
-- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
-- $ python deeplabv3/evaluation/eval_on_val.py 
-
-- Write what the code does, what files are created etc. TODO!
-
-****
-****
-
-****
-
 ### visualization/run_on_seq.py:
 
 - SSH into the paperspace server.
@@ -198,6 +183,18 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 ****
 ****
+
+****
+
+### TODO Eval val:
+
+- SSH into the paperspace server.
+- $ sudo sh start_docker_image.sh
+- $ cd --
+- $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
+- $ python deeplabv3/evaluation/eval_on_val.py 
+
+- Write what the code does, what files are created etc. TODO!
 
 ****
 
