@@ -11,7 +11,7 @@ PyTorch implementation of DeepLabV3, trained on the Cityscapes dataset.
 - [Pretrained model](#pretrained-model)
 - [Training a model on Cityscapes](#train-model-on-cityscapes)
 - [Evaluation](#evaluation)
-- [Visualization](#visualization/run_on_seqpy)
+- [Visualization](#visualization-run_on_seq-py)
 
 ****
 ****
