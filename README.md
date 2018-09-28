@@ -258,10 +258,10 @@ Score Average : 0.786    0.632
 - - Definition of the custom Resnet model (output stride = 8 or 16) which is the backbone of DeepLabV3.
 
 - model/aspp.py:
-- - Definition of the 
+- - Definition of the Atrous Spatial Pyramid Pooling (ASPP) module.
 
 - model/deeplabv3.py:
-- - TODO!
+- - Definition of the complete DeepLabV3 model.
 
 - utils/preprocess_data.py:
 - - TODO!
