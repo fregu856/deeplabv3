@@ -1,6 +1,6 @@
 # deeplabv3
 
-PyTorch implementation of DeepLabV3, trained on the Cityscapes dataset.
+PyTorch implementation of [DeepLabV3](https://arxiv.org/abs/1706.05587), trained on the Cityscapes dataset.
 
 - [Youtube video](https://youtu.be/9e2x4dDRB-k) of results:
 
