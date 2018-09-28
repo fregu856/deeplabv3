@@ -232,7 +232,7 @@ Score Average : 0.786    0.632
 - $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/visualization/run_on_seq.py 
 
-- - This will run the pretrained model (set on line 33 in run_on_seq.py) on all images in the Cityscapes demo sequences (stuttgart_00, stuttgart_01 and stuttgart_02) and create a visualization video for each sequence. See [Youtube video](https://youtu.be/9e2x4dDRB-k) from the top of the page. 
+- - This will run the pretrained model (set on line 33 in run_on_seq.py) on all images in the Cityscapes demo sequences (stuttgart_00, stuttgart_01 and stuttgart_02) and create a visualization video for each sequence, which is saved to deeplabv3/training_logs/model_eval_seq. See [Youtube video](https://youtu.be/9e2x4dDRB-k) from the top of the page. 
 
 ****
 
@@ -244,7 +244,7 @@ Score Average : 0.786    0.632
 - $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/visualization/run_on_thn_seq.py 
 
-- Write what files are created etc. TODO!
+- - This will run the pretrained model (set on line 31 in run_on_thn_seq.py) on all images in the Thn sequence (real-life sequence collected with a standard dash cam) and create a visualization video, which is saved to deeplabv3/training_logs/model_eval_seq_thn. See [Youtube video](https://youtu.be/9e2x4dDRB-k) from the top of the page. 
 
 
 ****
