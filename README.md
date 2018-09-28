@@ -232,7 +232,7 @@ Score Average : 0.786    0.632
 - $ python deeplabv3/utils/preprocess_data.py *(ONLY NEED TO DO THIS ONCE!)*
 - $ python deeplabv3/visualization/run_on_seq.py 
 
-- Write what files are created etc. TODO!
+- - This will run the pretrained model (set on line 33 in run_on_seq.py) on all images in the Cityscapes demo sequences (stuttgart_00, stuttgart_01 and stuttgart_02) and create a visualization video for each sequence. See [Youtube video](https://youtu.be/9e2x4dDRB-k) from the top of the page. 
 
 ****
 
