@@ -10,7 +10,8 @@ PyTorch implementation of DeepLabV3, trained on the Cityscapes dataset.
 - [Using a VM on Paperspace](#paperspace)
 - [Pretrained model](#pretrained-model)
 - [Training a model on Cityscapes](#train-model-on-cityscapes)
-- TODO!
+- [Evaluation](#evaluation)
+- [Visualization](#visualization/run_on_seq.py)
 
 ****
 ****
@@ -173,7 +174,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 
 ****
 
-### TODO Seq:
+### visualization/run_on_seq.py:
 
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
@@ -184,11 +185,8 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 - Write what files are created etc. TODO!
 
 ****
-****
 
-****
-
-### TODO Thn Seq:
+### visualization/run_on_thn_seq.py:
 
 - SSH into the paperspace server.
 - $ sudo sh start_docker_image.sh
