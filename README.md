@@ -12,7 +12,7 @@ PyTorch implementation of DeepLabV3, trained on the Cityscapes dataset.
 - [Training a model on Cityscapes](#train-model-on-cityscapes)
 - [Evaluation](#evaluation)
 - [Visualization](#visualization/run-on-seq-py)
-- [Documentation for remaining code](#visualization-run-on-seq-py)
+- [Documentation for remaining code](#documentation-for-remaining-code)
 
 ****
 ****
@@ -244,3 +244,12 @@ Score Average : 0.786    0.632
 
 - Write what files are created etc. TODO!
 
+
+****
+****
+
+****
+
+## Documentation for remaining code
+
+- TODO!
