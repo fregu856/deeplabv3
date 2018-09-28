@@ -1,10 +1,10 @@
 # deeplabv3
 
-3D Object Detection for Autonomous Driving in PyTorch, trained on the KITTI dataset.
+PyTorch implementation of DeepLabV3, trained on the Cityscapes dataset.
 
-- [Youtube video](https://youtu.be/KdrHLXpYYlg) of results:
+- [Youtube video](https://youtu.be/9e2x4dDRB-k) of results:
 
-[![demo video with results](https://img.youtube.com/vi/KdrHLXpYYlg/0.jpg)](https://www.youtube.com/watch?v=KdrHLXpYYlg)
+[![demo video with results](https://img.youtube.com/vi/9e2x4dDRB-k/0.jpg)](https://youtu.be/9e2x4dDRB-k)
 
 ******
 ## Paperspace:
