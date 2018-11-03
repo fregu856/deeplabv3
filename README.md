@@ -126,7 +126,7 @@ NV_GPU="$GPUIDS" nvidia-docker run -it --rm \
 ***
 ## Pretrained model:
 - pretrained_models/model_13_2_2_2_epoch_580.pth:
-- - Trained for 580 epochs on [Cityscapes](https://www.cityscapes-dataset.com/) val and 3333 + 745 images from [Berkeley DeepDrive](http://bdd-data.berkeley.edu/).
+- - Trained for 580 epochs on [Cityscapes](https://www.cityscapes-dataset.com/) train and 3333 + 745 images from [Berkeley DeepDrive](http://bdd-data.berkeley.edu/).
 
 ****
 ****
