@@ -20,7 +20,7 @@ def add_weight_decay(net, l2_value, skip_list=()):
     return [{'params': no_decay, 'weight_decay': 0.0}, {'params': decay, 'weight_decay': l2_value}]
 
 # function for colorizing a label image:
-def label_img_to_color_20(img):
+def label_img_to_color(img):
     img=img.astype(np.uint8)
     lut=np.ones((256,1,3),dtype=np.uint8)
     
