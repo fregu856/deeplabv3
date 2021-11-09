@@ -1,7 +1,6 @@
 # camera-ready
 
 import sys
-
 sys.path.append("/root/deeplabv3")
 from datasets import DatasetVal # (this needs to be imported before torch, because cv2 needs to be imported before torch for some reason)
 
