@@ -21,36 +21,34 @@ def add_weight_decay(net, l2_value, skip_list=()):
 
 # function for colorizing a label image:
 def label_img_to_color(img):
-    label_to_color = {
-        0: [128, 64,128],
-        1: [244, 35,232],
-        2: [ 70, 70, 70],
-        3: [102,102,156],
-        4: [190,153,153],
-        5: [153,153,153],
-        6: [250,170, 30],
-        7: [220,220,  0],
-        8: [107,142, 35],
-        9: [152,251,152],
-        10: [ 70,130,180],
-        11: [220, 20, 60],
-        12: [255,  0,  0],
-        13: [  0,  0,142],
-        14: [  0,  0, 70],
-        15: [  0, 60,100],
-        16: [  0, 80,100],
-        17: [  0,  0,230],
-        18: [119, 11, 32],
-        19: [81,  0, 81]
-        }
+    img=img.astype(np.uint8)
+    lut=np.ones((256,1,3),dtype=np.uint8)
+    
+    ine = np.array([[
+         [128, 64,128],#road 0 
+         [244, 35,232],#sidewalk 1
+         [ 70, 70, 70],#building 2
+         [190,153,153],#wall  3
+         [153,153,153],#fence 4
+         [250,170, 30],#pole  5
+         [220,220,  0],#traffic light 6
+         [0,0, 255],#traffic sign 7
+         [152,251,152],#vegetation 8
+         [ 70,130,180],#terrain 9
+         [220, 20, 60],#sky 10 
+         [255,  0,  0],#person 11
+         [  0,  0,142],#rider 12
+         [  0,  0, 70],#car 13
+         [  0, 60,100],#truck 14
+         [  0, 80,100],#bus 15
+         [  0,  0,230],#train 16
+         [119, 11, 32],#motorcycle 17
+         [81,  0, 81],#bicycle 18
+         [0,0,0]#background 19
+    ]])
 
-    img_height, img_width = img.shape
-
-    img_color = np.zeros((img_height, img_width, 3))
-    for row in range(img_height):
-        for col in range(img_width):
-            label = img[row, col]
-
-            img_color[row, col] = np.array(label_to_color[label])
+    
+    lut[0:20,:,:]=ine.reshape(20,1,3)
+    img_color=cv2.applyColorMap(img,lut)
 
     return img_color
